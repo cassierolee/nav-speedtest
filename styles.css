@@ -1,0 +1,132 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mono {
+  font-family: monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel,
+.browser {
+  border: 1px solid;
+}
+
+.panel {
+  padding: 1em;
+}
+
+.status,
+.bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar {
+  border-bottom: 1px solid;
+}
+
+.timer {
+  font-size: 2em;
+}
+
+.target {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.testbtns {
+  display: flex;
+  flex-direction: column;
+}
+
+.testbtns button {
+  text-align: left;
+}
+
+.menus {
+  display: flex;
+}
+
+.menus .mi,
+.menus .sub {
+  position: relative;
+}
+
+.menus .top {
+  cursor: pointer;
+  padding: .25em .5em;
+}
+
+.menus .dd {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: Canvas;
+  border: 1px solid;
+}
+
+.menus .fly {
+  top: 0;
+  left: 100%;
+}
+
+.menus .mi.open>.dd,
+.menus .sub.open>.fly {
+  display: block;
+}
+
+.menus .mi.open>.top,
+.menus .sub.open>.item {
+  text-decoration: underline;
+}
+
+.menus .item,
+.menus .leaf {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.flat {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: right;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+td.sub {
+  padding-left: 1em;
+}

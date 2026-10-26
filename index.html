@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cov'er">
+		<title>Navigation Speed Test</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body>
+		<main>
+			<h1>Navigation Speed Test</h1>
+
+			<section id="setup" class="panel">
+				<label for="n">Trials</label>
+				<input id="n" type="number" min="1" max="20" value="10">
+				<div class="testbtns">
+					<button data-test="0"><b>Nested Menus</b><small>&emsp;Find the page through a menu bar with dropdowns</small></button>
+					<button data-test="1"><b>Flat List</b><small>&emsp;Find the page among all pages shown at once</small></button>
+					<button data-test="2"><b>Mixed</b><small>&emsp;both tests mixed together</small></button>
+				</div>
+			</section>
+
+			<section id="ready" class="hidden">
+				<div class="status"><span id="rtest"></span><span id="rcount" class="mono"></span></div>
+				<div class="target" id="rtarget"></div>
+				<button id="start" class="primary">Start Test</button>
+			</section>
+
+			<section id="run" class="hidden">
+				<div class="status">
+					<span id="stest"></span>
+					<span class="timer mono" id="clock">0.00</span>
+				</div>
+				<div class="panel" style="margin-bottom:12px">
+					<span>Find</span>
+					<div class="target" id="starget" style="margin:0"></div>
+				</div>
+				<div class="browser" id="browser">
+					<div class="bar"><span id="mode"></span><span style="margin-left:auto" id="errs" class="mono"></span></div>
+					<div class="page">
+						<div id="menus" class="menus hidden"></div>
+						<div id="flat" class="flat hidden"></div>
+					</div>
+				</div>
+				<div id="row"><button id="quit">Quit</button></div>
+			</section>
+
+			<section id="results" class="hidden">
+				<h2 style="margin-top:0">Results</h2>
+				<div class="panel tablewrap"><table id="table"></table></div>
+				<div class="row"><button id="download">Download results</button></div>
+				<div class="row"><button id="again" class="primary">Run again</button></div>
+			</section>
+		</main>
+		<script src="index.js"></script>
+	</body>
+</html>
