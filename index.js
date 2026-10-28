@@ -28,6 +28,8 @@
 
   var PAGES = [];
 
+  var countdownId;
+
   Object.keys(SITE).forEach(function(c) {
     Object.keys(SITE[c]).forEach(function(g) {
       SITE[c][g].forEach(function(p) { PAGES.push({ cat: c, grp: g, name: p }); });
@@ -41,7 +43,7 @@
   };
 
   function show(id) {
-    ["setup", "ready", "run", "results"].forEach(function(s) { $(s).classList.toggle("hidden", s !== id); });
+    ["setup", "run", "results"].forEach(function(s) { $(s).classList.toggle("hidden", s !== id); });
   }
 
   function shuffle(a) {
@@ -95,28 +97,39 @@
 
   function prepareTrial() {
     cur = queue[idx];
-    var T = TESTS[cur.test];
-    $("rtest").textContent = T.title;
-    $("rcount").textContent = "Trial " + (cur.trial + 1) + " of " + N;
-    $("rtarget").textContent = cur.target.name;
-
-    show("ready");
-    $("start").focus();
-  }
-
-  function startTrial() {
+    running = false;
     errors = 0;
     $("errs").textContent = "";
+    $("clock").textContent = "0.00";
     $("stest").textContent = TESTS[cur.test].title + " \u2014 trial " + (cur.trial + 1) + "/" + N;
-
-    $("starget").textContent = cur.target.name;
+    $("starget").textContent = "Press Start";
     $("mode").textContent = cur.mode === "menu" ? "Menu navigation" : "All pages";
     $("menus").classList.toggle("hidden", cur.mode !== "menu");
     $("flat").classList.toggle("hidden", cur.mode !== "flat");
 
     if (cur.mode === "menu") buildMenus(); else buildFlat();
 
+    $("browser").classList.add("locked");
+    $("start").classList.remove("hidden");
     show("run");
+    $("start").focus();
+  }
+
+  function startTrial() {
+    var n = 3;
+    $("start").classList.add("hidden");
+    $("starget").textContent = n;
+    countdownId = setInterval(function() {
+      n--;
+      if (n > 0) { $("starget").textContent = n; return; }
+      clearInterval(countdownId);
+      reveal();
+    }, 1000);
+  }
+
+  function reveal() {
+    $("starget").textContent = cur.target.name;
+    $("browser").classList.remove("locked");
     running = true;
     t0 = performance.now();
     tick();
@@ -131,11 +144,13 @@
   }
 
   function miss() {
+    if (!running) return;
     errors++;
     $("errs").textContent = errors + (errors === 1 ? " miss" : " misses");
   }
 
   function hit() {
+    if (!running) return;
     var ms = performance.now() - t0;
     running = false;
     cancelAnimationFrame(raf);
@@ -304,6 +319,7 @@
   document.addEventListener("keydown", function(e) { if (e.key === "Escape") closeMenus(); });
 
   $("quit").onclick = function() {
+    clearInterval(countdownId);
     running = false;
     cancelAnimationFrame(raf);
     show("setup");
