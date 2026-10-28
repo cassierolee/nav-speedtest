@@ -75,7 +75,7 @@ label {
   margin-bottom: 1em;
 }
 
-.locked {
+.counting {
   pointer-events: none;
 }
 

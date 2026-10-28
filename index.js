@@ -29,6 +29,7 @@
   var PAGES = [];
 
   var countdownId;
+  var counting = false;
 
   Object.keys(SITE).forEach(function(c) {
     Object.keys(SITE[c]).forEach(function(g) {
@@ -111,12 +112,17 @@
 
     $("browser").classList.add("locked");
     $("start").classList.remove("hidden");
+
+    counting = false;
+    $("browser").classList.remove("counting");
     show("run");
     $("start").focus();
   }
 
   function startTrial() {
     var n = 3;
+    closeMenus();
+    $("browser").classList.add("counting");
     $("start").classList.add("hidden");
     $("starget").textContent = n;
     countdownId = setInterval(function() {
@@ -128,8 +134,9 @@
   }
 
   function reveal() {
+    counting = false;
     $("starget").textContent = cur.target.name;
-    $("browser").classList.remove("locked");
+    $("browser").classList.remove("locked", "counting");
     running = true;
     t0 = performance.now();
     tick();
@@ -165,6 +172,7 @@
   }
 
   function buildMenus() {
+    if (counting) return;
     var box = $("menus");
     box.textContent = "";
 
@@ -192,6 +200,7 @@
         item.appendChild(el("span", "\u25B8"));
 
         function openSub() {
+          if (counting) return;
           sub.parentNode.querySelectorAll(".sub.open").forEach(function(n) { n.classList.remove("open"); });
           sub.classList.add("open");
         }
@@ -202,6 +211,7 @@
         SITE[c][g].forEach(function(p) {
           var b = el("button", p, "leaf");
           b.onclick = function() {
+            if (!running) return;
             var ok = p === cur.target.name && g === cur.target.grp && c === cur.target.cat;
             closeMenus();
             if (ok) hit(); else miss(box);
@@ -320,6 +330,7 @@
 
   $("quit").onclick = function() {
     clearInterval(countdownId);
+    counting = false;
     running = false;
     cancelAnimationFrame(raf);
     show("setup");
