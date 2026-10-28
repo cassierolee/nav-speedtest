@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  --line: color-mix(in srgb, currentColor 30%, transparent);
 }
 
 * {
@@ -8,11 +9,13 @@
 
 body {
   font-family: system-ui, sans-serif;
+  line-height: 1.5;
 }
 
 main {
   max-width: 50rem;
   margin: 0 auto;
+  padding: 1em;
 }
 
 .hidden {
@@ -24,23 +27,63 @@ main {
   font-variant-numeric: tabular-nums;
 }
 
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  padding: .5em 1em;
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+button.primary {
+  background: AccentColor;
+  color: AccentColorText;
+  font-weight: bold;
+}
+
+input[type=number] {
+  padding: .25em .5em;
+}
+
+label {
+  margin-right: .5em;
+}
+
 .panel,
 .browser {
-  border: 1px solid;
+  border: 1px solid var(--line);
 }
 
 .panel {
   padding: 1em;
 }
 
-.status,
-.bar {
+.row {
+  display: flex;
+  gap: .5em;
+  margin-top: 1em;
+}
+
+.status {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1em;
+}
+
+#ready .target {
+  margin: 1em 0;
 }
 
 .bar {
-  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  padding: .5em 1em;
+  border-bottom: 1px solid var(--line);
 }
 
 .timer {
@@ -52,17 +95,29 @@ main {
   font-weight: bold;
 }
 
+.browser {
+  margin-bottom: 1em;
+}
+
 .testbtns {
   display: flex;
   flex-direction: column;
+  gap: .5em;
+  margin-top: 1em;
 }
 
 .testbtns button {
   text-align: left;
+  padding: .75em 1em;
+}
+
+.testbtns b {
+  display: block;
 }
 
 .menus {
   display: flex;
+  gap: .25em;
 }
 
 .menus .mi,
@@ -70,9 +125,14 @@ main {
   position: relative;
 }
 
-.menus .top {
+.menus .top,
+.menus button {
   cursor: pointer;
-  padding: .25em .5em;
+  padding: .25em .75em;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .menus .dd {
@@ -80,8 +140,9 @@ main {
   position: absolute;
   top: 100%;
   left: 0;
+  padding: 0.25em;
   background: Canvas;
-  border: 1px solid;
+  border: 1px solid var(--line);
 }
 
 .menus .fly {
@@ -99,17 +160,36 @@ main {
   text-decoration: underline;
 }
 
+.menus .top:hover,
+.menus button:hover,
+.menus .item,
+.menus .leaf {
+  background: Highlight;
+  color: HighlightText;
+}
+
 .menus .item,
 .menus .leaf {
   display: flex;
   justify-content: space-between;
+  gap: 1em;
   width: 100%;
   white-space: nowrap;
 }
 
+.page {
+  padding: 1em;
+}
+
 .flat {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: .5em;
+}
+
+.flat button {
+  padding: .75em;
+  text-align: left;
 }
 
 table {
@@ -120,6 +200,7 @@ table {
 th,
 td {
   text-align: right;
+  border-bottom: 1px solid var(--line);
 }
 
 th:first-child,
@@ -128,5 +209,5 @@ td:first-child {
 }
 
 td.sub {
-  padding-left: 1em;
+  padding-left: 1.5em;
 }

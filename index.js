@@ -8,21 +8,21 @@
   };
 
   var SITE = {
-    "0": {
-      "00": ["000", "001", "002"],
-      "01": ["010", "011", "012"]
+    "Nouns": {
+      "Concrete": ["Astrolabe", "Portcullis", "Gramophone"],
+      "Abstract": ["Serendipity", "Magnanimity", "Obsolescence"]
     },
-    "1": {
-      "10": ["100", "101", "102"],
-      "11": ["110", "111", "112"]
+    "Verbs": {
+      "Action": ["Excavate", "Perambulate", "Genuflect"],
+      "Stative": ["Subsist", "Pertain", "Comprise"]
     },
-    "2": {
-      "20": ["200", "201", "202"],
-      "21": ["210", "211", "212"]
+    "Descriptive": {
+      "Adjectives": ["Ephemeral", "Labyrinthine", "Tempestuous"],
+      "Adverbs": ["Surreptitiously", "Perfunctorily", "Inexorably"]
     },
-    "3": {
-      "30": ["300", "301", "302"],
-      "31": ["310", "311", "312"]
+    "Pronouns": {
+      "Reflexive": ["Themselves", "Yourselves", "Oneself"],
+      "Relative": ["Whomever", "Whichever", "Whosoever"]
     }
   };
 
