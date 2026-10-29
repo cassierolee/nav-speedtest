@@ -182,14 +182,38 @@ label {
 }
 
 .flat {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: .5em;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: .25em;
 }
 
 .flat button {
-  padding: .75em;
+  padding: .4em 1em;
+  border: 0;
+  background: none;
   text-align: left;
+}
+
+.flat button:hover {
+  background: var(--line);
+}
+
+.find {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.find #start.hidden {
+  display: inline-block !important;
+  visibility: hidden;
+}
+
+.find .buttons {
+  display: flex;
+  gap: .5em;
 }
 
 table {

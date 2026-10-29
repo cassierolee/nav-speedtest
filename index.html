@@ -32,9 +32,15 @@
 					<span id="stest"></span>
 					<span class="timer mono" id="clock">0.00</span>
 				</div>
-				<div class="panel" style="margin-bottom:12px">
-					<span>Find</span>
-					<div class="target" id="starget" style="margin:0"></div>
+				<div class="panel find">
+					<div>
+						<span>Find</span>
+						<div class="target" id="starget"></div>
+					</div>
+					<div class="buttons">
+						<button id="start" class="primary">Start</button>
+						<button id="quit">Quit</button>
+					</div>
 				</div>
 				<div class="browser" id="browser">
 					<div class="bar"><span id="mode"></span><span style="margin-left:auto" id="errs" class="mono"></span></div>
@@ -42,10 +48,6 @@
 						<div id="menus" class="menus hidden"></div>
 						<div id="flat" class="flat hidden"></div>
 					</div>
-				</div>
-				<div class="row">
-					<button id="start" class="primary">Start</button>
-					<button id="quit">Quit</button>
 				</div>
 			</section>
 
