@@ -6,8 +6,26 @@
     state: function() { return { N: N, queue: queue, idx: idx, results: results, cur: cur, errors: errors }; },
     setN: function(v) { N = v; }
   };
-
   var SITE = {
+    "Nouns": {
+      "Concrete": ["Person", "House", "Food"],
+      "Abstract": ["Hope", "Love", "Anger"]
+    },
+    "Verbs": {
+      "Action": ["Walk", "Jump", "Dive"],
+      "Stative": ["Understand", "Seem", "Comprise"]
+    },
+    "Descriptive": {
+      "Adjectives": ["Beautiful", "Cold", "Sad"],
+      "Adverbs": ["Quickly", "Extremely", "Dangerously"]
+    },
+    "Pronouns": {
+      "Personal": ["He", "She", "They"],
+      "Reflexive": ["Himself", "Herself", "Themself"]
+    }
+  };
+
+  var OLD_SITE = {
     "Nouns": {
       "Concrete": ["Astrolabe", "Portcullis", "Gramophone"],
       "Abstract": ["Serendipity", "Magnanimity", "Obsolescence"]
